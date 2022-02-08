@@ -25,7 +25,6 @@ nav {
   background-color: #963634;
   grid-column: 1 / 2;
   grid-row: 1 / -1;
-  overflow: hidden;
 }
 
 .viewWindow {
@@ -37,6 +36,7 @@ nav {
 
 footer {
   background-color: aquamarine;
-  grid-column: auto / -1;
+  grid-column: 1 / -1;
   grid-row: -2 / -1;
+  text-align: center;
 }
