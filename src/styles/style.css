@@ -3,3 +3,38 @@
   --theme2: #fcf6f1;
   --theme3: rgb(32, 32, 32);
 }
+
+.app {
+  background-color: pink;
+  width: 100vw;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  grid-template-rows: 150px auto 1.2em;
+}
+
+header {
+  background-color: yellowgreen;
+  grid-column: auto / -1;
+  grid-row: 1 / 2;
+}
+
+nav {
+  background-color: #963634;
+  grid-column: 1 / 2;
+  grid-row: 1 / -1;
+  overflow: hidden;
+}
+
+.viewWindow {
+  background-color: yellow;
+  /* height: 900px; */
+  grid-column: auto /-1;
+  grid-row: 2 / 1fr;
+}
+
+footer {
+  background-color: aquamarine;
+  grid-column: auto / -1;
+  grid-row: -2 / -1;
+}

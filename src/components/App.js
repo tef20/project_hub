@@ -1,14 +1,14 @@
 import Navbar from "./Navbar";
 import Header from "./Header";
+import ViewWindow from "./ViewWindow";
 import Footer from "./Footer";
-import DisplayArea from "./DisplayArea";
 
 function App() {
   return (
-    <div className="Dashboard">
+    <div className="app">
       <Header />
       <Navbar />
-      <DisplayArea />
+      <ViewWindow />
       <Footer />
     </div>
   );
