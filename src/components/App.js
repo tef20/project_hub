@@ -1,7 +1,15 @@
+import Navbar from "./Navbar";
+import Header from "./Header";
+import Footer from "./Footer";
+import DisplayArea from "./DisplayArea";
+
 function App() {
   return (
-    <div className="App">
-      App
+    <div className="Dashboard">
+      <Header />
+      <Navbar />
+      <DisplayArea />
+      <Footer />
     </div>
   );
 }
