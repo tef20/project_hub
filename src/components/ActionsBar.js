@@ -7,11 +7,11 @@ import SearchBar from "./Searchbar";
 
 const ActionsBar = () => {
   return (
-    <div>
+    <section className="actions-bar">
       <SearchBar />
       {/* sort */}
       {/* add */}
-    </div>
+    </section>
   )
 }
 

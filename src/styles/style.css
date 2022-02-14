@@ -6,7 +6,6 @@
 
 .app {
   background-color: pink;
-  width: 100vw;
   min-height: 100vh;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -24,7 +23,7 @@ header {
 nav {
   background-color: #963634;
   grid-column: 1 / 2;
-  grid-row: 1 / -1;
+  grid-row: 1 / -2;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -50,9 +49,58 @@ footer {
 }
 
 .viewWindow {
-  background-color: yellow;
+  background-color: #dbdee2;
   grid-column: auto / -1;
   grid-row: 2 / 1fr;
 }
 
+.display-area {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 9px;
+}
 
+.actions-bar {
+  grid-column: 1 / -1;
+  height: 50px;
+}
+
+.gallery {
+  grid-column: 1 / -2;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.gallery-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 250px);
+  gap: 7px;
+}
+
+.gallery-item {
+  display: flex;
+  height: 150px;
+  border: solid 1px black;
+  border-radius: 4px;
+  background-color: yellow;
+}
+
+.aside {
+  grid-column: -2 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.aside section {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.aside ul {
+  border: solid 1px black;
+  border-radius: 4px;
+  background-color: yellow;
+}

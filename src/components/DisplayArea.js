@@ -10,7 +10,7 @@ import Gallery from "./ProjectGallery";
 
 const DisplayArea = () => {
   return (
-    <section>
+    <section className="display-area">
       <ActionsBar />
       <Gallery />
       <Aside />
