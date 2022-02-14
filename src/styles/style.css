@@ -9,29 +9,37 @@
   width: 100vw;
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 150px 1fr;
-  grid-template-rows: 150px auto 1.2em;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 110px auto 1.2em;
 }
-
-
 
 header {
   background-color: yellowgreen;
   grid-column: auto / -1;
   grid-row: 1 / 2;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 nav {
   background-color: #963634;
   grid-column: 1 / 2;
   grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.viewWindow {
-  background-color: yellow;
-  /* height: 900px; */
-  grid-column: auto /-1;
-  grid-row: 2 / 1fr;
+.material-icons-outlined {
+  font-size: 0.8em;
+}
+
+.nav--logo {
+  font-size: 3rem;
+}
+
+.nav--item {
+  font-size: 1.3rem;
 }
 
 footer {
@@ -40,3 +48,11 @@ footer {
   grid-row: -2 / -1;
   text-align: center;
 }
+
+.viewWindow {
+  background-color: yellow;
+  grid-column: auto / -1;
+  grid-row: 2 / 1fr;
+}
+
+

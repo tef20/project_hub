@@ -9,13 +9,21 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav>
-      <div className='nav--logo'>Logo</div>
+      <div className='nav--logo'>
+        <span class='material-icons-outlined'>vrpano</span>
+      </div>
       <ul className='nav-items'>
-        <li className='nav--item'>Dashboard
+        <li className='nav--item'>
+          <span class='material-icons-outlined'>grid_view</span>Dashbord
           {/* <Link to={'/'}>Dashboard</Link> */}
         </li>
-        <li className='nav--item'>My Projects</li>
-        <li className='nav--item'>Get In Touch!</li>
+        <li className='nav--item'>
+          <span class='material-icons-outlined'>smart_toy</span>My Projects
+        </li>
+        <li className='nav--item'>
+          <span class='material-icons-outlined'>alternate_email</span>Get In
+          Touch!
+        </li>
       </ul>
       {/* logo link intro */}
       {/* link gallery */}
