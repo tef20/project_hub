@@ -4,11 +4,11 @@
 const Gallery = () => {
   return (
     <section className='gallery'>
-      <span>gallery-items</span>
+      <span>Gallery items</span>
       <ul className="gallery-items">
         {Array.from({ length: 7 }, (_, i) => {
           return (
-            <li className='gallery-item'>
+            <li key={i} className='gallery-item'>
               <span>{`item${i}`}</span>
             </li>
           );

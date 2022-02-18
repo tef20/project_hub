@@ -10,18 +10,18 @@ const Navbar = () => {
   return (
     <nav>
       <div className='nav--logo'>
-        <span class='material-icons-outlined'>vrpano</span>
+        <span className='material-icons-outlined'>vrpano</span>
       </div>
       <ul className='nav-items'>
         <li className='nav--item'>
-          <span class='material-icons-outlined'>grid_view</span>Dashbord
+          <span className='material-icons-outlined'>grid_view</span>Dashbord
           {/* <Link to={'/'}>Dashboard</Link> */}
         </li>
         <li className='nav--item'>
-          <span class='material-icons-outlined'>smart_toy</span>My Projects
+          <span className='material-icons-outlined'>smart_toy</span>My Projects
         </li>
         <li className='nav--item'>
-          <span class='material-icons-outlined'>alternate_email</span>Get In
+          <span className='material-icons-outlined'>alternate_email</span>Get In
           Touch!
         </li>
       </ul>

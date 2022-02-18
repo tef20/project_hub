@@ -5,8 +5,8 @@
 const SearchBar = () => {
   return (
     <div>
-      <input type="text" className="search-bar"/>
-      
+      <input type="text" name='search-bar' className="search-bar"/>
+      <button onClick={() => console.log('search')}>🔍</button>
     </div>
   )
 }

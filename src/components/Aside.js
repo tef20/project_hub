@@ -10,7 +10,7 @@ const Aside = () => {
         <ul className='most-viewed list-items'>
           {Array.from({ length: 3 }, (_, i) => {
             return (
-              <li className='most-viewed list-item'>
+              <li key={i} className='most-viewed list-item'>
                 <span>{`item${i}`}</span>
               </li>
             );
@@ -22,7 +22,7 @@ const Aside = () => {
         <ul className='most-liked list-items'>
           {Array.from({ length: 3 }, (_, i) => {
             return (
-              <li className='most-liked list-item'>
+              <li key={i} className='most-liked list-item'>
                 <span>{`item${i}`}</span>
               </li>
             );

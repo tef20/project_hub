@@ -13,7 +13,9 @@
 }
 
 header {
+  z-index: 1;
   background-color: yellowgreen;
+  box-shadow: 0 0 3px 3px grey;
   grid-column: auto / -1;
   grid-row: 1 / 2;
   display: flex;
@@ -21,6 +23,7 @@ header {
 }
 
 nav {
+  z-index: 1;
   background-color: #963634;
   grid-column: 1 / 2;
   grid-row: 1 / -2;
@@ -62,7 +65,11 @@ footer {
 
 .actions-bar {
   grid-column: 1 / -1;
-  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar {
 }
 
 .gallery {
