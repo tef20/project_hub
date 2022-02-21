@@ -91,7 +91,7 @@ footer {
 }
 
 .gallery-item {
-  display: flex;
+  padding: 0.4rem;
   height: 150px;
   border: solid 1px black;
   border-radius: 4px;
@@ -101,6 +101,22 @@ footer {
 .gallery-item:hover {
   background-color: rgb(255, 208, 0);
   cursor: pointer;
+}
+
+.gallery-item--proj-name {
+
+}
+
+.gallery-item--img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 70%;
+}
+
+.gallery-item--img {
+  font-size: xxx-large;
 }
 
 .aside {

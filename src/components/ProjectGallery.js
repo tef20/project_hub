@@ -16,7 +16,14 @@ const Gallery = ({ projects }) => {
               className='gallery-item'
               onClick={() => navigate(`${projId}`)}
             >
-              <span>{projects[projId].name}</span>
+              <h3 className="gallery-item--proj-name">{projects[projId].name}</h3>
+              <div className='gallery-item--img-wrapper'>
+                <img
+                  src=''
+                  alt='smart_toy'
+                  className='gallery-item--img material-icons-outlined'
+                />
+              </div>
             </li>
           );
         })}
