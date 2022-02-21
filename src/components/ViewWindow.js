@@ -8,13 +8,13 @@ import Project from "./Project";
 
 const ViewWindow = () => {
   const projects = {
-    0: { name: "proj0" },
-    1: { name: "proj1" },
-    2: { name: "proj2" },
-    3: { name: "proj3" },
-    4: { name: "proj4" },
-    5: { name: "proj5" },
-    6: { name: "proj6" },
+    0: { name: "CV Builder", author: "Chris", link: "github.com" },
+    1: { name: "Naughts and Crosses", author: "Chris", link: "github.com" },
+    2: { name: "Calculator", author: "Chris", link: "github.com" },
+    3: { name: "Library", author: "Chris", link: "github.com" },
+    4: { name: "Todo List", author: "Chris", link: "github.com" },
+    5: { name: "Projects Hub", author: "Chris", link: "github.com" },
+    6: { name: "CS50ai", author: "Chris", link: "github.com"},
   };
 
   return (

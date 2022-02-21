@@ -121,3 +121,45 @@ footer {
   border-radius: 4px;
   background-color: yellow;
 }
+
+.project {
+  padding: 4%;
+  display: flex;
+  gap: 1%;
+}
+
+.project--img-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  width: 250px;
+  background-color: rgb(231, 227, 227);
+  opacity: 0.8;
+  border: solid 1px grey;
+}
+
+.project--project-img {
+}
+
+.project--text-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3em;
+}
+
+.project--title {
+  font-size: xxx-large;
+}
+
+.project--meta {
+  display: flex;
+  gap: 20%;
+  font-size: x-large;
+}
+
+.project--description {
+  font-size: x-large;
+  width: 85%;
+}
