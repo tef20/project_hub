@@ -1,14 +1,17 @@
-// Todo:
-//  - click to sign in / out
-//  - display current user icon / name
+import { useEffect, useState } from "react";
+import avatar from "../images/blank_avatar.webp";
 
-const SignInWidget = () => {
+const SignInWidget = (props) => {
+  const userSignedIn = false;
+  const [profilePic, setProfilePic] = useState(avatar);
+
   return (
     <div>
-      sign in here
-      
+      <div className='profile-pic--wrapper'>
+        <img src={userSignedIn ? profilePic : profilePic} alt='' />
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default SignInWidget;
