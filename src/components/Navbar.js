@@ -14,11 +14,16 @@ const Navbar = () => {
       </div>
       <ul className='nav-items'>
         <li className='nav--item'>
-          <span className='material-icons-outlined'>grid_view</span>Dashbord
-          {/* <Link to={'/'}>Dashboard</Link> */}
+          <Link to='/'>
+            <span className='material-icons-outlined'>grid_view</span>Dashbord
+            {/* <Link to={'/'}>Dashboard</Link> */}
+          </Link>
         </li>
         <li className='nav--item'>
-          <span className='material-icons-outlined'>smart_toy</span>My Projects
+          <Link to='/lol'>
+            <span className='material-icons-outlined'>smart_toy</span>My
+            Projects
+          </Link>
         </li>
         <li className='nav--item'>
           <span className='material-icons-outlined'>alternate_email</span>Get In

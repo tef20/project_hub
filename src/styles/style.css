@@ -12,6 +12,11 @@
   grid-template-rows: 110px auto 1.2em;
 }
 
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 header {
   z-index: 1;
   background-color: yellowgreen;
@@ -91,6 +96,11 @@ footer {
   border: solid 1px black;
   border-radius: 4px;
   background-color: yellow;
+}
+
+.gallery-item:hover {
+  background-color: rgb(255, 208, 0);
+  cursor: pointer;
 }
 
 .aside {
