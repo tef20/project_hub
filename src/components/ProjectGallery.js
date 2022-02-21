@@ -3,20 +3,20 @@
 
 import { useNavigate } from "react-router-dom";
 
-const Gallery = () => {
+const Gallery = ({ projects }) => {
   const navigate = useNavigate();
   return (
     <section className='gallery'>
       <span>Gallery items</span>
       <ul className='gallery-items'>
-        {Array.from({ length: 7 }, (_, i) => {
+        {Object.keys(projects).map((projId) => {
           return (
             <li
-              key={i}
+              key={projId}
               className='gallery-item'
-              onClick={() => navigate(`${i}`)}
+              onClick={() => navigate(`${projId}`)}
             >
-              <span>{`item${i}`}</span>
+              <span>{projects[projId].name}</span>
             </li>
           );
         })}
