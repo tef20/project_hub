@@ -1,21 +1,30 @@
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import DisplayArea from "./DisplayArea";
 import Project from "./Project";
+import projectsData from "../projects-data";
 
 // todo:
 //  - routes to gallery
 //  - other options selected from nav
 
 const ViewWindow = () => {
-  const projects = {
-    0: { name: "CV Builder", author: "Chris", link: "github.com" },
-    1: { name: "Naughts and Crosses", author: "Chris", link: "github.com" },
-    2: { name: "Calculator", author: "Chris", link: "github.com" },
-    3: { name: "Library", author: "Chris", link: "github.com" },
-    4: { name: "Todo List", author: "Chris", link: "github.com" },
-    5: { name: "Projects Hub", author: "Chris", link: "github.com" },
-    6: { name: "CS50ai", author: "Chris", link: "github.com"},
-  };
+  const [projects, setProject] = useState({});
+
+  useEffect(() => {
+    const loadTestData = async () => {
+      console.log("Loading test data...");
+      try {
+        const testData = await import("../projects-data");
+        const projects = testData.default;
+        console.log("Success.");
+        setProject(projects);
+      } catch {
+        console.log("Failed.");
+      }
+    };
+    if ("test") loadTestData();
+  }, []);
 
   return (
     <section className='viewWindow'>

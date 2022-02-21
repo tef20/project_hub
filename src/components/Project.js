@@ -19,7 +19,7 @@ export default function Project({ projects }) {
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque
           tempora debitis cum! Tempore mollitia alias tempora, reprehenderit vel
           eos. Sapiente laboriosam neque necessitatibus unde officiis ad. Aut
-          minus officiis maiores! k
+          minus officiis maiores! 
         </p>
       </div>
     </div>

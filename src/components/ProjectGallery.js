@@ -16,7 +16,12 @@ const Gallery = ({ projects }) => {
               className='gallery-item'
               onClick={() => navigate(`${projId}`)}
             >
-              <h3 className="gallery-item--proj-name">{projects[projId].name}</h3>
+              <h3 className='gallery-item--proj-name'>
+                {projects[projId].name}
+              </h3>
+              <p className='gallery-item--proj-auth'>
+                {`by ${projects[projId].author}`}
+              </p>
               <div className='gallery-item--img-wrapper'>
                 <img
                   src=''

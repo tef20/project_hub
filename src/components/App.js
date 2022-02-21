@@ -2,7 +2,7 @@ import Navbar from "./Navbar";
 import Header from "./Header";
 import ViewWindow from "./ViewWindow";
 import Footer from "./Footer";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
