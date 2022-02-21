@@ -2,15 +2,10 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import DisplayArea from "./DisplayArea";
 import Project from "./Project";
-import projectsData from "../projects-data";
-
-// todo:
-//  - routes to gallery
-//  - other options selected from nav
 
 const ViewWindow = () => {
   const [projects, setProject] = useState({});
-
+  
   useEffect(() => {
     const loadTestData = async () => {
       console.log("Loading test data...");

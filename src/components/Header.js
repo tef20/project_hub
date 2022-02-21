@@ -1,16 +1,15 @@
 import SignInWidget from "./SignInWidget";
 
-// Todo: 
+// Todo:
 //  - sign-in / user icon
 //  - share link (copy to clipboard)
 const Header = () => {
-
   return (
     <header>
       <SignInWidget />
-      {/* share button  */}
+      TODO: 
     </header>
-  )
-}
+  );
+};
 
 export default Header;
