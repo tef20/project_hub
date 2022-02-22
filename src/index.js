@@ -4,7 +4,15 @@ import "./styles/reset.css";
 import "./styles/style.css";
 import App from "./components/App";
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
+// import projects from "./projects-data";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBF3sGQoIGzzZBI8nrOEuuXJTZQ3NwIiJA",
@@ -16,15 +24,6 @@ const firebaseConfig = {
 };
 
 initializeApp(firebaseConfig);
-const db = getFirestore();
-const colRef = collection(db, "projects");
-getDocs(colRef).then((snapshot) => {
-  const projects = snapshot.docs.map((project) => ({
-    ...project.data(),
-    id: project.id,
-  }));
-  console.log(projects);
-});
 
 ReactDOM.render(
   <React.StrictMode>
