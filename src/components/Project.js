@@ -1,3 +1,4 @@
+// todo: handle refresh on project page -- curently crashes
 import { useParams } from "react-router-dom";
 
 export default function Project({ projects }) {
@@ -12,7 +13,7 @@ export default function Project({ projects }) {
         {(projects[id].author || projects[id].author) && (
           <h3 className='project--meta'>
             {projects[id].author && <span>Author: {projects[id].author}</span>}
-            {projects[id].link && <span>Link: {projects[id].link}</span>}
+            {projects[id].link && <span>Link: <a href={projects[id].link}>{projects[id].link}</a></span>}
           </h3>
         )}
         <p className='project--description'>

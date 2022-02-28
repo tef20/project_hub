@@ -25,14 +25,26 @@ header {
   grid-row: 1 / 2;
   display: flex;
   flex-direction: row-reverse;
-  padding: 1.5vw;
+  /* padding: 1.5vw; */
+}
+
+.sign-in--widget {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  gap: 9px;
+}
+
+.sign-in--username {
+  cursor: default;
+  font-size: large;
 }
 
 .profile-pic--wrapper {
   display: flex;
   width: 50px;
   height: 50px;
-
   border-radius: 50%;
   overflow: hidden;
 }
@@ -160,7 +172,7 @@ footer {
 .project {
   padding: 4%;
   display: flex;
-  gap: 1%;
+  gap: 3%;
 }
 
 .project--img-wrapper {
@@ -173,6 +185,7 @@ footer {
   background-color: rgb(231, 227, 227);
   opacity: 0.8;
   border: solid 1px grey;
+  border-radius: 3px;
 }
 
 .project--project-img {

@@ -20,15 +20,15 @@ const Navbar = () => {
           </Link>
         </li>
         <li className='nav--item'>
-          <Link to='/'>
+          <Link to='/my_projects'>
             <span className='material-icons-outlined'>smart_toy</span>My
             Projects
           </Link>
         </li>
         <li className='nav--item'>
           <Link to='/'>
-          <span className='material-icons-outlined'>alternate_email</span>Get In
-          Touch!
+            <span className='material-icons-outlined'>alternate_email</span>Get
+            In Touch!
           </Link>
         </li>
       </ul>
