@@ -11,10 +11,8 @@ import DisplayArea from "./DisplayArea";
 import Project from "./Project";
 import { firestoreDB } from "../firebase-config";
 
-const ViewWindow = () => {
+const ViewWindow = ({ user }) => {
   const [projects, setProjects] = useState({});
-  const [user, setUser] = useState("Alice");
-  const [userProjects, setUserProjects] = useState({});
 
   useEffect(() => {
     let mounted = true;
@@ -22,6 +20,11 @@ const ViewWindow = () => {
       console.log("Loading projects...");
       try {
         const colRef = collection(firestoreDB, "projects");
+        // const userProjectsQuery = query(
+        //   colRef,
+        //   where("author", "==", user)
+        //   // orderBy("name")
+        // );
         const projectsQuery = query(colRef, orderBy("author"));
         onSnapshot(projectsQuery, (snapshot) => {
           const storedProjects = snapshot.docs.map((project) => ({
@@ -48,54 +51,20 @@ const ViewWindow = () => {
     };
   }, []);
 
-  useEffect(() => {
-    let mounted = true;
-
-    const loadProjectsData = async () => {
-      console.log(`Loading projects for ${user}...`);
-      try {
-        const colRef = collection(firestoreDB, "projects");
-        const userProjectsQuery = query(
-          colRef,
-          where("author", "==", user)
-          // orderBy("name")
-        );
-        onSnapshot(userProjectsQuery, (snapshot) => {
-          const storedProjects = snapshot.docs.map((project) => ({
-            ...project.data(),
-            id: project.id,
-          }));
-          if (mounted) {
-            setUserProjects(storedProjects);
-            console.log("Load successful.");
-          }
-        });
-      } catch (err) {
-        if (mounted) {
-          console.log(err.message);
-          console.log("Load failed.");
-        }
-      }
-    };
-
-    if (![null, undefined].includes(user)) {
-      loadProjectsData();
-    }
-
-    return () => {
-      mounted = false;
-      console.log("Loading cancelled.");
-    };
-  }, [user]);
-
   return (
     <section className='viewWindow'>
       <Routes>
-        <Route path='' element={<DisplayArea projects={projects} />} />
-        <Route path=':id' element={<Project projects={projects} />} />
+        <Route
+          path=''
+          element={<DisplayArea projects={projects} user={'all'} />}
+        />
+        <Route
+          path=':id'
+          element={<Project projects={projects} user={user} />}
+        />
         <Route
           path='my_projects'
-          element={<DisplayArea projects={userProjects} />}
+          element={<DisplayArea projects={projects} user={user} />}
         />
       </Routes>
     </section>

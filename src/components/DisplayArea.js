@@ -4,15 +4,13 @@
 //  - aside
 //  - responsive to window size
 
-import ActionsBar from "./ActionsBar";
 import Aside from "./Aside";
 import Gallery from "./ProjectGallery";
 
-const DisplayArea = ({projects}) => {
+const DisplayArea = ({projects, user}) => {
   return (
     <section className='display-area'>
-      <ActionsBar />
-      <Gallery projects={projects} />
+      <Gallery user={user} projects={projects} />
       <Aside />
     </section>
   );

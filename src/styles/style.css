@@ -111,6 +111,15 @@ footer {
   gap: 7px;
 }
 
+.empty-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20%;
+  /* background-color: blueviolet; */
+  font-size: xx-large;
+}
+
 .gallery-items {
   display: grid;
   grid-template-columns: repeat(auto-fill, 250px);
