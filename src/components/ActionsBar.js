@@ -3,15 +3,20 @@
 //  - sort projects
 //  - add new project
 
+import AddProjectButton from "./AddProjectButton";
 import SearchBar from "./Searchbar";
 import SortSelector from "./SortSelector";
 
 const ActionsBar = ({
+  user,
   filterString,
   setFilterString,
   sortField,
   setSortField,
 }) => {
+  const handleAddNewProject = () => {
+    console.log("add new project");
+  };
   return (
     <section className='actions-bar'>
       <SearchBar
@@ -19,7 +24,9 @@ const ActionsBar = ({
         setFilterString={setFilterString}
       />
       <SortSelector sortField={sortField} setSortField={setSortField} />
-      {/* add */}
+      {user !== "all" && (
+        <AddProjectButton handleAddNewProject={handleAddNewProject}/>
+      )}
     </section>
   );
 };

@@ -7,15 +7,19 @@ const SearchBar = ({ filterString, setFilterString }) => {
     setFilterString(e.target.value);
   };
   return (
-    <div>
-      <input
-        type='text'
-        name='search-bar'
-        className='search-bar'
-        value={filterString}
-        onChange={handleSearchInput}
-      />
-    </div>
+    <>
+      <label htmlFor='search-bar'>Find: </label>
+      <div>
+        <input
+          id='search-bar'
+          type='text'
+          name='search-bar'
+          className='search-bar'
+          value={filterString}
+          onChange={handleSearchInput}
+        />
+      </div>
+    </>
   );
 };
 
