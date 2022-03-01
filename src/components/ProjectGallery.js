@@ -2,20 +2,16 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ActionsBar from "./ActionsBar";
 
-const Gallery = ({ projects, user, sortField = "name" }) => {
-  const [selectedProjectIds, setSelectedProjectIds] = useState({});
+const Gallery = ({ projects, user }) => {
+  const [selectedProjectIds, setSelectedProjectIds] = useState([]);
   const [filterString, setFilterString] = useState("");
   const [filterExp, setFilterExp] = useState(/.*/);
+  const [sortField, setSortField] = useState("name");
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(filterString)
     setFilterExp(new RegExp(filterString, "i"));
   }, [filterString]);
-
-  const sortProjIds = (field) => {
-    return;
-  };
 
   const matchUser = (projects, projId, user) => {
     return user && projects[projId]?.authorId === user?.uid;
@@ -39,14 +35,29 @@ const Gallery = ({ projects, user, sortField = "name" }) => {
     });
   }, [projects, user, filterExp]);
 
-  // useEffect(() => {
-  //   return selectedProjectIds.sort((projIdA, projIdB) => projIdA.name - projIdA.name)
-  // }, [selectedProjectIds, sortField])
+  useEffect(() => {
+    if (sortField !== "date") {
+      return setSelectedProjectIds((prevIds) => {
+        return [...prevIds].sort((projIdA, projIdB) => {
+          if (projects[projIdA][sortField] < projects[projIdB][sortField])
+            return -1;
+          if (projects[projIdA][sortField] > projects[projIdB][sortField])
+            return 1;
+          return 0;
+        });
+      });
+    }
+  }, [projects, sortField]);
 
   return (
     <>
-      {" "}
-      <ActionsBar filterString={filterString} setFilterString={setFilterString} />
+      {/* <SearchBar filterString={filterString} setFilterString={setFilterString} /> */}
+      <ActionsBar
+        filterString={filterString}
+        setFilterString={setFilterString}
+        sortField={sortField}
+        setSortField={setSortField}
+      />
       <section className='gallery'>
         <span>Gallery items</span>
         {selectedProjectIds.length ? (

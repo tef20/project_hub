@@ -4,7 +4,6 @@
 
 const SearchBar = ({ filterString, setFilterString }) => {
   const handleSearchInput = (e) => {
-    // console.log(e.target.value);
     setFilterString(e.target.value);
   };
   return (

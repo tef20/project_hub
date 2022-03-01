@@ -4,15 +4,21 @@
 //  - add new project
 
 import SearchBar from "./Searchbar";
+import SortSelector from "./SortSelector";
 
-const ActionsBar = ({filterString, setFilterString}) => {
+const ActionsBar = ({
+  filterString,
+  setFilterString,
+  sortField,
+  setSortField,
+}) => {
   return (
     <section className='actions-bar'>
-      <SearchBar filterString={filterString} setFilterString={setFilterString} />
-      <select name='filters' id='filters'>
-        <option value='name'>Name</option>
-        <option value='date'>Date</option>
-      </select>
+      <SearchBar
+        filterString={filterString}
+        setFilterString={setFilterString}
+      />
+      <SortSelector sortField={sortField} setSortField={setSortField} />
       {/* add */}
     </section>
   );
