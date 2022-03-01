@@ -2,37 +2,61 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ActionsBar from "./ActionsBar";
 
-const Gallery = ({ projects, user }) => {
-  const [filteredProjectIds, setFilteredProjectIds] = useState({});
+const Gallery = ({ projects, user, sortField = "name" }) => {
+  const [selectedProjectIds, setSelectedProjectIds] = useState({});
+  const [filterString, setFilterString] = useState("");
+  const [filterExp, setFilterExp] = useState(/.*/);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user !== "all") {
-      console.log(user);
-      setFilteredProjectIds(
-        Object.keys(projects).filter(
-          (projId) => projects[projId]?.authorId === user?.uid
-        )
-      );
-    } else {
-      setFilteredProjectIds(Object.keys(projects));
+    console.log(filterString)
+    setFilterExp(new RegExp(filterString, "i"));
+  }, [filterString]);
+
+  const sortProjIds = (field) => {
+    return;
+  };
+
+  const matchUser = (projects, projId, user) => {
+    return user && projects[projId]?.authorId === user?.uid;
+  };
+
+  const matchField = (projects, projId, filterExp, ...fields) => {
+    for (const field of fields) {
+      if (filterExp.test(projects[projId][field])) return true;
     }
-  }, [projects, user]);
+  };
+
+  useEffect(() => {
+    setSelectedProjectIds(() => {
+      const projIds = Object.keys(projects);
+      return projIds.filter(
+        (projId) =>
+          (user === "all" || matchUser(projects, projId, user)) &&
+          (!filterExp ||
+            matchField(projects, projId, filterExp, "author", "name"))
+      );
+    });
+  }, [projects, user, filterExp]);
+
+  // useEffect(() => {
+  //   return selectedProjectIds.sort((projIdA, projIdB) => projIdA.name - projIdA.name)
+  // }, [selectedProjectIds, sortField])
 
   return (
     <>
       {" "}
-      <ActionsBar />
+      <ActionsBar filterString={filterString} setFilterString={setFilterString} />
       <section className='gallery'>
         <span>Gallery items</span>
-        {filteredProjectIds.length ? (
+        {selectedProjectIds.length ? (
           <ul className='gallery-items'>
-            {filteredProjectIds.map((projId) => {
+            {selectedProjectIds.map((projId) => {
               return (
                 <li
                   key={projId}
                   className='gallery-item'
-                  onClick={() => navigate(`${projId}`)}
+                  onClick={() => navigate(`/${projId}`)}
                 >
                   <h3 className='gallery-item--proj-name'>
                     {projects[projId].name}

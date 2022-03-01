@@ -1,14 +1,23 @@
-// Todo: 
+// Todo:
 //  - filter projects by name
 //  - sort projects? different section?
 
-const SearchBar = () => {
+const SearchBar = ({ filterString, setFilterString }) => {
+  const handleSearchInput = (e) => {
+    // console.log(e.target.value);
+    setFilterString(e.target.value);
+  };
   return (
     <div>
-      <input type="text" name='search-bar' className="search-bar"/>
-      <button onClick={() => console.log('search')}>🔍</button>
+      <input
+        type='text'
+        name='search-bar'
+        className='search-bar'
+        value={filterString}
+        onChange={handleSearchInput}
+      />
     </div>
-  )
-}
+  );
+};
 
 export default SearchBar;

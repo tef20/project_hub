@@ -1,3 +1,5 @@
+// todo: add author id to projects
+// 
 import {
   collection,
   onSnapshot,

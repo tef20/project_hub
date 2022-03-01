@@ -32,10 +32,6 @@ const Navbar = () => {
           </Link>
         </li>
       </ul>
-      {/* logo link intro */}
-      {/* link gallery */}
-      {/* link personal */}
-      {/* link contact */}
     </nav>
   );
 };

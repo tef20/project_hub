@@ -1,9 +1,3 @@
-// todo:
-//  - actions bar
-//  - gallery
-//  - aside
-//  - responsive to window size
-
 import Aside from "./Aside";
 import Gallery from "./ProjectGallery";
 
