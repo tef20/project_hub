@@ -36,6 +36,7 @@ const Gallery = ({ projects, user }) => {
   }, [projects, user, filterExp]);
 
   useEffect(() => {
+    // todo: allow sort by date added (after add / edit functionality added)
     if (sortField !== "date") {
       return setSelectedProjectIds((prevIds) => {
         return [...prevIds].sort((projIdA, projIdB) => {

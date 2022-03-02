@@ -220,3 +220,36 @@ footer {
   font-size: x-large;
   width: 85%;
 }
+
+.popup-overlay {
+  z-index: 2;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.new-project-form {
+  display: grid;
+  grid-template-columns: auto auto;
+  line-height: 2em;
+  gap: 5px;
+  padding: 15px 15px 30px 15px;
+  background-color: aqua;
+  border-radius: 4px;
+}
+
+.form-header,
+.form-sub-button {
+  grid-column: 1 / -1;
+}
+
+.form-header {
+  text-align: center;
+  font-size: larger;
+}

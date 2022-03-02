@@ -13,7 +13,7 @@ export default function Project({ projects }) {
         {(projects[id].author || projects[id].author) && (
           <h3 className='project--meta'>
             {projects[id].author && <span>Author: {projects[id].author}</span>}
-            {projects[id].link && <span>Link: <a href={projects[id].link}>{projects[id].link}</a></span>}
+            {projects[id].link && <span>Link: <a href={`https://${projects[id].link}`}>{projects[id].link}</a></span>}
           </h3>
         )}
         <p className='project--description'>
