@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ActionsBar from "./ActionsBar";
+import ProjectForm from "./ProjectForm";
 
 const Gallery = ({ projects, user, showFromAll }) => {
+  // todo: fix confusion over project ids -- projects is an array of objects, each obect should have a uniq id
   const [selectedProjectIds, setSelectedProjectIds] = useState([]);
   const [filterString, setFilterString] = useState("");
   const [filterExp, setFilterExp] = useState(/.*/);
   const [sortField, setSortField] = useState("name");
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+  const [projIdUnderEdit, setProjIdUnderEdit] = useState();
 
   useEffect(() => {
     setFilterExp(new RegExp(filterString, "i"));
@@ -28,7 +32,7 @@ const Gallery = ({ projects, user, showFromAll }) => {
       const projIds = Object.keys(projects);
       return projIds.filter(
         (projId) =>
-        // this filter is a bit adhoc...
+          // this filter is a bit adhoc...
           (showFromAll || matchUser(projects, projId, user)) &&
           (!filterExp ||
             matchField(projects, projId, filterExp, "author", "name"))
@@ -51,32 +55,72 @@ const Gallery = ({ projects, user, showFromAll }) => {
     }
   }, [projects, sortField]);
 
+  const togglePopup = (show) => {
+    setShowPopup((prevState) => show ?? !prevState);
+  };
+
+  const handleClosePopup = (e) => {
+    if (e.target === document.querySelector(".popup-overlay")) {
+      togglePopup(false);
+      setProjIdUnderEdit(null);
+    }
+  };
+
+  const handleEditClick = (e, projId) => {
+    e.stopPropagation();
+    console.log("setting", projId);
+    setProjIdUnderEdit((prev) => projId);
+    togglePopup(true);
+  };
+
   return (
     <>
-      {/* <SearchBar filterString={filterString} setFilterString={setFilterString} /> */}
+      {showPopup && (
+        <div className='popup-overlay' onClick={handleClosePopup}>
+          <ProjectForm
+            user={user}
+            closePopup={() => togglePopup(false)}
+            projects={projects}
+            project={projIdUnderEdit}
+          />
+        </div>
+      )}
       <ActionsBar
         filterString={filterString}
         setFilterString={setFilterString}
         sortField={sortField}
         setSortField={setSortField}
         user={user}
+        firePopup={() => togglePopup(true)}
       />
       <section className='gallery'>
         <span>Gallery items</span>
         {selectedProjectIds.length ? (
           <ul className='gallery-items'>
             {selectedProjectIds.map((projId) => {
+              const project = projects[projId];
+              const buttonTray =
+                user && user.uid === project.authorId ? (
+                  <>
+                    <button onClick={(e) => handleEditClick(e, projId)}>
+                      Edit
+                    </button>
+                    <button onClick={() => console.log("delete")}>
+                      Delete
+                    </button>
+                  </>
+                ) : (
+                  <button onClick={() => console.log("like")}>Like</button>
+                );
               return (
                 <li
                   key={projId}
                   className='gallery-item'
                   onClick={() => navigate(`/${projId}`)}
                 >
-                  <h3 className='gallery-item--proj-name'>
-                    {projects[projId].name}
-                  </h3>
+                  <h3 className='gallery-item--proj-name'>{project.name}</h3>
                   <p className='gallery-item--proj-auth'>
-                    {`by ${projects[projId].author}`}
+                    {`by ${project.author}`}
                   </p>
                   <div className='gallery-item--img-wrapper'>
                     <img
@@ -85,6 +129,7 @@ const Gallery = ({ projects, user, showFromAll }) => {
                       className='gallery-item--img material-icons-outlined'
                     />
                   </div>
+                  {buttonTray}
                 </li>
               );
             })}

@@ -23,10 +23,12 @@ const ViewWindow = ({ user }) => {
         // );
         const projectsQuery = query(colRef, orderBy("author"));
         onSnapshot(projectsQuery, (snapshot) => {
-          const storedProjects = snapshot.docs.map((project) => ({
-            ...project.data(),
-            id: project.id,
-          }));
+          const storedProjects = snapshot.docs.map((project) => {
+            return {
+              ...project.data(),
+              id: project.id,
+            };
+          });
           if (mounted) {
             setProjects(storedProjects);
             console.log("Load successful.");

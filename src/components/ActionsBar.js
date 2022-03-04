@@ -1,9 +1,5 @@
-// Todo:
-//  - searchbar
-//  - sort projects
-//  - add new project
-
-import AddProjectButton from "./AddProjectButton";
+import React, { useState } from "react";
+import ProjectForm from "./ProjectForm";
 import SearchBar from "./Searchbar";
 import SortSelector from "./SortSelector";
 
@@ -13,10 +9,8 @@ const ActionsBar = ({
   setFilterString,
   sortField,
   setSortField,
+  firePopup,
 }) => {
-  const handleAddNewProject = () => {
-    console.log("add new project");
-  };
   return (
     <section className='actions-bar'>
       <SearchBar
@@ -24,8 +18,7 @@ const ActionsBar = ({
         setFilterString={setFilterString}
       />
       <SortSelector sortField={sortField} setSortField={setSortField} />
-      {/* todo: conditional on user signed in */}
-      {user?.uid && <AddProjectButton handleAddNewProject={handleAddNewProject} user={user}/>}
+      {user?.uid && <button onClick={firePopup}>Add project</button>}
     </section>
   );
 };

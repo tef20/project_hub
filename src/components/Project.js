@@ -13,15 +13,15 @@ export default function Project({ projects }) {
         {(projects[id].author || projects[id].author) && (
           <h3 className='project--meta'>
             {projects[id].author && <span>Author: {projects[id].author}</span>}
-            {projects[id].link && <span>Link: <a href={`https://${projects[id].link}`}>{projects[id].link}</a></span>}
+            {projects[id].link && (
+              <span>
+                Link:{" "}
+                <a href={`https://${projects[id].link}`}>{projects[id].link}</a>
+              </span>
+            )}
           </h3>
         )}
-        <p className='project--description'>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque
-          tempora debitis cum! Tempore mollitia alias tempora, reprehenderit vel
-          eos. Sapiente laboriosam neque necessitatibus unde officiis ad. Aut
-          minus officiis maiores! 
-        </p>
+        <p className='project--description'>{projects[id].description}</p>
       </div>
     </div>
   );

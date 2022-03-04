@@ -104,6 +104,12 @@ footer {
 .search-bar {
 }
 
+textarea {
+  font-family: inherit;
+  font-style: inherit;
+  font-size: small;
+}
+
 .gallery {
   grid-column: 1 / -2;
   display: flex;
