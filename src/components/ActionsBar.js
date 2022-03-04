@@ -25,7 +25,7 @@ const ActionsBar = ({
       />
       <SortSelector sortField={sortField} setSortField={setSortField} />
       {/* todo: conditional on user signed in */}
-      {<AddProjectButton handleAddNewProject={handleAddNewProject} />}
+      {user?.uid && <AddProjectButton handleAddNewProject={handleAddNewProject} user={user}/>}
     </section>
   );
 };

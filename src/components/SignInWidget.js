@@ -1,4 +1,4 @@
-import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { signInWithPopup, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth, googleProvider } from "../firebase-config";
 import avatar from "../images/blank_avatar.webp";

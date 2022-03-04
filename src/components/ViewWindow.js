@@ -1,11 +1,6 @@
 // todo: add author id to projects
-// 
-import {
-  collection,
-  onSnapshot,
-  orderBy,
-  query,
-} from "firebase/firestore";
+//
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import DisplayArea from "./DisplayArea";
@@ -57,7 +52,9 @@ const ViewWindow = ({ user }) => {
       <Routes>
         <Route
           path=''
-          element={<DisplayArea projects={projects} user={'all'} />}
+          element={
+            <DisplayArea projects={projects} showFromAll={true} user={user} />
+          }
         />
         <Route
           path=':id'
@@ -65,7 +62,9 @@ const ViewWindow = ({ user }) => {
         />
         <Route
           path='my_projects'
-          element={<DisplayArea projects={projects} user={user} />}
+          element={
+            <DisplayArea projects={projects} showFromAll={false} user={user} />
+          }
         />
       </Routes>
     </section>

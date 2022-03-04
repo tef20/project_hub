@@ -1,25 +1,19 @@
 import { onAuthStateChanged } from "firebase/auth";
-import {
-  addDoc,
-  collection,
-  doc,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { auth, firestoreDB } from "../firebase-config";
 
-export default function NewProjPopupForm({ togglePopup }) {
-  const [user, setUser] = useState(null);
+export default function NewProjPopupForm({ togglePopup, user }) {
+  // const [user, setUser] = useState(null);
   const [formValues, setFormValues] = useState({});
 
-  useEffect(() => {
-    const unsubAthState = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-    });
-    console.log("Updating user");
-    return unsubAthState;
-  }, []);
+  // useEffect(() => {
+  //   const unsubAthState = onAuthStateChanged(auth, (user) => {
+  //     setUser(user);
+  //   });
+  //   console.log("Updating user");
+  //   return unsubAthState;
+  // }, []);
 
   const handleFormChange = (e) => {
     e.preventDefault();
@@ -28,9 +22,10 @@ export default function NewProjPopupForm({ togglePopup }) {
       [e.target.name]: e.target.value,
     }));
   };
+
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-    console.log(formValues);
+    console.log(formValues, user);
     if (user && Object.keys(formValues).length) {
       const projectsRef = collection(firestoreDB, "projects");
       await addDoc(projectsRef, {
@@ -42,11 +37,10 @@ export default function NewProjPopupForm({ togglePopup }) {
         authorId: user.uid,
         createdAt: serverTimestamp(),
       });
+      console.log("success?");
     }
     togglePopup(false);
   };
-
-  // const submitToFirebase
 
   const handleClosePopup = (e) => {
     if (e.target === document.querySelector(".popup-overlay")) {

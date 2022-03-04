@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import NewProjPopupForm from "./NewProjPopupForm";
 
-export default function AddProjectButton({ handleAddNewProject }) {
+export default function AddProjectButton({ user }) {
   const [showPopup, setShowPopup] = useState(false);
 
   const togglePopup = (show) => {
     setShowPopup((prevState) => show ?? !prevState);
-    // handleAddNewProject
   };
 
   return (
     <>
       <button onClick={(e) => togglePopup(true)}>Add project</button>
-      {showPopup && <NewProjPopupForm togglePopup={togglePopup} />}
+      {showPopup && <NewProjPopupForm togglePopup={togglePopup} user={user} />}
     </>
   );
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ActionsBar from "./ActionsBar";
 
-const Gallery = ({ projects, user }) => {
+const Gallery = ({ projects, user, showFromAll }) => {
   const [selectedProjectIds, setSelectedProjectIds] = useState([]);
   const [filterString, setFilterString] = useState("");
   const [filterExp, setFilterExp] = useState(/.*/);
@@ -28,12 +28,13 @@ const Gallery = ({ projects, user }) => {
       const projIds = Object.keys(projects);
       return projIds.filter(
         (projId) =>
-          (user === "all" || matchUser(projects, projId, user)) &&
+        // this filter is a bit adhoc...
+          (showFromAll || matchUser(projects, projId, user)) &&
           (!filterExp ||
             matchField(projects, projId, filterExp, "author", "name"))
       );
     });
-  }, [projects, user, filterExp]);
+  }, [showFromAll, projects, user, filterExp]);
 
   useEffect(() => {
     // todo: allow sort by date added (after add / edit functionality added)
@@ -58,6 +59,7 @@ const Gallery = ({ projects, user }) => {
         setFilterString={setFilterString}
         sortField={sortField}
         setSortField={setSortField}
+        user={user}
       />
       <section className='gallery'>
         <span>Gallery items</span>
