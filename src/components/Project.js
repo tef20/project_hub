@@ -1,28 +1,31 @@
-// todo: handle refresh on project page -- curently crashes
 import { useParams } from "react-router-dom";
 
 export default function Project({ projects }) {
   const { id } = useParams();
+  const project = projects.find((project) => project.id === id);
   return (
     <div className='project'>
-      <div className='project--img-wrapper'>
-        <img src='' alt='250 x 250' className='project--project-img' />
-      </div>
-      <div className='project--text-wrapper'>
-        <h2 className='project--title'>{projects[id].name}</h2>
-        {(projects[id].author || projects[id].author) && (
-          <h3 className='project--meta'>
-            {projects[id].author && <span>Author: {projects[id].author}</span>}
-            {projects[id].link && (
-              <span>
-                Link:{" "}
-                <a href={`https://${projects[id].link}`}>{projects[id].link}</a>
-              </span>
+      {project && (
+        <>
+          <div className='project--img-wrapper'>
+            <img src='' alt='250 x 250' className='project--project-img' />
+          </div>
+          <div className='project--text-wrapper'>
+            <h2 className='project--title'>{project.name}</h2>
+            {(project.author || project.author) && (
+              <h3 className='project--meta'>
+                {project.author && <span>Author: {project.author}</span>}
+                {project.link && (
+                  <span>
+                    Link: <a href={`https://${project.link}`}>{project.link}</a>
+                  </span>
+                )}
+              </h3>
             )}
-          </h3>
-        )}
-        <p className='project--description'>{projects[id].description}</p>
-      </div>
+            <p className='project--description'>{project.description}</p>
+          </div>
+        </>
+      )}
     </div>
   );
 }

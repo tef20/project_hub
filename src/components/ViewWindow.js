@@ -8,7 +8,7 @@ import Project from "./Project";
 import { firestoreDB } from "../firebase-config";
 
 const ViewWindow = ({ user }) => {
-  const [projects, setProjects] = useState({});
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     let mounted = true;
@@ -59,7 +59,7 @@ const ViewWindow = ({ user }) => {
           }
         />
         <Route
-          path=':id'
+          path='project/:id'
           element={<Project projects={projects} user={user} />}
         />
         <Route

@@ -1,11 +1,12 @@
+import { deleteDoc, doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { firestoreDB } from "../firebase-config";
 import ActionsBar from "./ActionsBar";
 import ProjectForm from "./ProjectForm";
 
 const Gallery = ({ projects, user, showFromAll }) => {
-  // todo: fix confusion over project ids -- projects is an array of objects, each obect should have a uniq id
-  const [selectedProjectIds, setSelectedProjectIds] = useState([]);
+  const [selectedProjects, setSelectedProjects] = useState([]);
   const [filterString, setFilterString] = useState("");
   const [filterExp, setFilterExp] = useState(/.*/);
   const [sortField, setSortField] = useState("name");
@@ -17,25 +18,23 @@ const Gallery = ({ projects, user, showFromAll }) => {
     setFilterExp(new RegExp(filterString, "i"));
   }, [filterString]);
 
-  const matchUser = (projects, projId, user) => {
-    return user && projects[projId]?.authorId === user?.uid;
+  const matchUser = (project, user) => {
+    return user && project.authorId === user.uid;
   };
 
-  const matchField = (projects, projId, filterExp, ...fields) => {
+  const matchField = (project, filterExp, ...fields) => {
     for (const field of fields) {
-      if (filterExp.test(projects[projId][field])) return true;
+      if (filterExp.test(project[field])) return true;
     }
   };
 
   useEffect(() => {
-    setSelectedProjectIds(() => {
-      const projIds = Object.keys(projects);
-      return projIds.filter(
-        (projId) =>
+    setSelectedProjects(() => {
+      return projects.filter(
+        (project) =>
           // this filter is a bit adhoc...
-          (showFromAll || matchUser(projects, projId, user)) &&
-          (!filterExp ||
-            matchField(projects, projId, filterExp, "author", "name"))
+          (showFromAll || matchUser(project, user)) &&
+          (!filterExp || matchField(project, filterExp, "author", "name"))
       );
     });
   }, [showFromAll, projects, user, filterExp]);
@@ -43,12 +42,10 @@ const Gallery = ({ projects, user, showFromAll }) => {
   useEffect(() => {
     // todo: allow sort by date added (after add / edit functionality added)
     if (sortField !== "date") {
-      return setSelectedProjectIds((prevIds) => {
-        return [...prevIds].sort((projIdA, projIdB) => {
-          if (projects[projIdA][sortField] < projects[projIdB][sortField])
-            return -1;
-          if (projects[projIdA][sortField] > projects[projIdB][sortField])
-            return 1;
+      return setSelectedProjects((prevState) => {
+        return [...prevState].sort((projA, projB) => {
+          if (projA[sortField] < projB[sortField]) return -1;
+          if (projA[sortField] > projB[sortField]) return 1;
           return 0;
         });
       });
@@ -68,9 +65,13 @@ const Gallery = ({ projects, user, showFromAll }) => {
 
   const handleEditClick = (e, projId) => {
     e.stopPropagation();
-    console.log("setting", projId);
-    setProjIdUnderEdit((prev) => projId);
+    setProjIdUnderEdit(projId);
     togglePopup(true);
+  };
+
+  const handleDeleteItem = (e, projId) => {
+    e.stopPropagation();
+    deleteDoc(doc(firestoreDB, "projects", projId));
   };
 
   return (
@@ -81,7 +82,7 @@ const Gallery = ({ projects, user, showFromAll }) => {
             user={user}
             closePopup={() => togglePopup(false)}
             projects={projects}
-            project={projIdUnderEdit}
+            projIdUnderEdit={projIdUnderEdit}
           />
         </div>
       )}
@@ -95,17 +96,16 @@ const Gallery = ({ projects, user, showFromAll }) => {
       />
       <section className='gallery'>
         <span>Gallery items</span>
-        {selectedProjectIds.length ? (
+        {selectedProjects.length ? (
           <ul className='gallery-items'>
-            {selectedProjectIds.map((projId) => {
-              const project = projects[projId];
+            {selectedProjects.map((project) => {
               const buttonTray =
                 user && user.uid === project.authorId ? (
                   <>
-                    <button onClick={(e) => handleEditClick(e, projId)}>
+                    <button onClick={(e) => handleEditClick(e, project.id)}>
                       Edit
                     </button>
-                    <button onClick={() => console.log("delete")}>
+                    <button onClick={(e) => handleDeleteItem(e, project.id)}>
                       Delete
                     </button>
                   </>
@@ -114,9 +114,9 @@ const Gallery = ({ projects, user, showFromAll }) => {
                 );
               return (
                 <li
-                  key={projId}
+                  key={project.id}
                   className='gallery-item'
-                  onClick={() => navigate(`/${projId}`)}
+                  onClick={() => navigate(`/project/${project.id}`)}
                 >
                   <h3 className='gallery-item--proj-name'>{project.name}</h3>
                   <p className='gallery-item--proj-auth'>
