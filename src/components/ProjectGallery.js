@@ -40,16 +40,17 @@ const Gallery = ({ projects, user, showFromAll }) => {
   }, [showFromAll, projects, user, filterExp]);
 
   useEffect(() => {
-    // todo: allow sort by date added (after add / edit functionality added)
-    if (sortField !== "date") {
-      return setSelectedProjects((prevState) => {
-        return [...prevState].sort((projA, projB) => {
-          if (projA[sortField] < projB[sortField]) return -1;
-          if (projA[sortField] > projB[sortField]) return 1;
-          return 0;
-        });
+    setSelectedProjects((prevState) => {
+      return [...prevState].sort((projA, projB) => {
+        const projAVal =
+          sortField === "date" ? projA[sortField].seconds : projA[sortField];
+        const projBVal =
+          sortField === "date" ? projB[sortField].seconds : projB[sortField];
+        if (projAVal < projBVal) return -1;
+        if (projAVal > projBVal) return 1;
+        return 0;
       });
-    }
+    });
   }, [projects, sortField]);
 
   const togglePopup = (show) => {

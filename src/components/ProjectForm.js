@@ -37,7 +37,10 @@ export default function ProjectForm({
       if (projIdUnderEdit) {
         console.log(2, projIdUnderEdit);
         const docRef = doc(firestoreDB, "projects", projIdUnderEdit);
-        await updateDoc(docRef, formValues);
+        await updateDoc(docRef, {
+          ...formValues,
+          createdAt: formValues.createdAt ?? serverTimestamp(),
+        });
       } else {
         const projectsRef = collection(firestoreDB, "projects");
         await addDoc(projectsRef, {
@@ -90,7 +93,7 @@ export default function ProjectForm({
             name="thumbnail"
             onChange={handleFormChange}
           /> */}
-        <button className='form-sub-button'>button</button>
+        <button className='form-sub-button'>Submit</button>
       </form>
     </div>
   );

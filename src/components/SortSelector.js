@@ -3,7 +3,7 @@ import React from "react";
 export default function SortSelector({ sortField, setSortField }) {
   return (
     <>
-      <label htmlFor="filters">Sort by: </label>
+      <label htmlFor='filters'>Sort by: </label>
       <select
         name='filters'
         id='filters'
@@ -11,7 +11,8 @@ export default function SortSelector({ sortField, setSortField }) {
         onChange={(e) => setSortField(e.target.value)}
       >
         <option value='name'>Name</option>
-        <option value='date'>Date</option>
+        <option value='author'>Author</option>
+        <option value='createdAt'>Date</option>
       </select>
     </>
   );
