@@ -1,4 +1,10 @@
-import { deleteDoc, doc } from "firebase/firestore";
+import {
+  arrayRemove,
+  arrayUnion,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { firestoreDB } from "../firebase-config";
@@ -43,9 +49,18 @@ const Gallery = ({ projects, user, showFromAll }) => {
     setSelectedProjects((prevState) => {
       return [...prevState].sort((projA, projB) => {
         const projAVal =
-          sortField === "date" ? projA[sortField].seconds : projA[sortField];
+          sortField === "createdAt"
+            ? projA[sortField].seconds
+            : sortField === "likes"
+            ? -projA[sortField]
+            : projA[sortField].toLowerCase();
         const projBVal =
-          sortField === "date" ? projB[sortField].seconds : projB[sortField];
+          sortField === "createdAt"
+            ? projB[sortField].seconds
+            : sortField === "likes"
+            ? -projB[sortField]
+            : projB[sortField].toLowerCase();
+
         if (projAVal < projBVal) return -1;
         if (projAVal > projBVal) return 1;
         return 0;
@@ -72,7 +87,24 @@ const Gallery = ({ projects, user, showFromAll }) => {
 
   const handleDeleteItem = (e, projId) => {
     e.stopPropagation();
-    deleteDoc(doc(firestoreDB, "projects", projId));
+    const projRef = doc(firestoreDB, "projects", projId);
+    deleteDoc(projRef);
+  };
+
+  const handleLikeClick = async (e, projId) => {
+    e.stopPropagation();
+    if (!user) {
+      alert("Sign in to like projects!");
+      return;
+    }
+    const projRef = doc(firestoreDB, "projects", projId);
+    const curProject = projects.find((project) => project.id === projId);
+
+    await updateDoc(projRef, {
+      likes: curProject.likes.includes(projId)
+        ? arrayRemove(projId)
+        : arrayUnion(projId),
+    });
   };
 
   return (
@@ -103,15 +135,40 @@ const Gallery = ({ projects, user, showFromAll }) => {
               const buttonTray =
                 user && user.uid === project.authorId ? (
                   <>
-                    <button onClick={(e) => handleEditClick(e, project.id)}>
-                      Edit
+                    <span>{project.likes.length}</span>
+                    <button
+                      onClick={(e) => handleLikeClick(e, project.id)}
+                      className={
+                        project.likes.includes(project.id)
+                          ? "material-icons"
+                          : "material-icons-outlined"
+                      }
+                    >
+                      thumb_up
                     </button>
-                    <button onClick={(e) => handleDeleteItem(e, project.id)}>
-                      Delete
+                    <button
+                      onClick={(e) => handleEditClick(e, project.id)}
+                      className='material-icons-outlined'
+                    >
+                      edit
+                    </button>
+                    <button
+                      onClick={(e) => handleDeleteItem(e, project.id)}
+                      className='material-icons-outlined'
+                    >
+                      delete
                     </button>
                   </>
                 ) : (
-                  <button onClick={() => console.log("like")}>Like</button>
+                  <>
+                    <span>{project.likes.length}</span>
+                    <button
+                      onClick={(e) => handleLikeClick(e, project.id)}
+                      className='material-icons-outlined'
+                    >
+                      thumb_up
+                    </button>
+                  </>
                 );
               return (
                 <li

@@ -5,7 +5,7 @@ const DisplayArea = ({ projects, user, showFromAll }) => {
   return (
     <section className='display-area'>
       <Gallery user={user} projects={projects} showFromAll={showFromAll} />
-      <Aside />
+      <Aside projects={projects} />
     </section>
   );
 };

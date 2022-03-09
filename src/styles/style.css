@@ -64,6 +64,7 @@ nav {
   overflow: hidden;
 }
 
+.material-icons,
 .material-icons-outlined {
   font-size: 0.8em;
 }
@@ -179,9 +180,18 @@ textarea {
 }
 
 .aside ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
   border: solid 1px black;
   border-radius: 4px;
   background-color: yellow;
+  padding: 0.4rem;
+}
+
+.aside ul li {
+  display: flex;
+  justify-content: space-between;
 }
 
 .project {

@@ -13,6 +13,7 @@ export default function SortSelector({ sortField, setSortField }) {
         <option value='name'>Name</option>
         <option value='author'>Author</option>
         <option value='createdAt'>Date</option>
+        <option value='likes'>Likes</option>
       </select>
     </>
   );
