@@ -101,9 +101,9 @@ const Gallery = ({ projects, user, showFromAll }) => {
     const curProject = projects.find((project) => project.id === projId);
 
     await updateDoc(projRef, {
-      likes: curProject.likes.includes(projId)
-        ? arrayRemove(projId)
-        : arrayUnion(projId),
+      likes: curProject.likes.includes(user.uid)
+        ? arrayRemove(user.uid)
+        : arrayUnion(user.uid),
     });
   };
 
@@ -141,7 +141,7 @@ const Gallery = ({ projects, user, showFromAll }) => {
                         <button
                           onClick={(e) => handleLikeClick(e, project.id)}
                           className={
-                            project.likes.includes(project.id)
+                            project.likes.includes(user.uid)
                               ? "material-icons"
                               : "material-icons-outlined"
                           }
@@ -167,11 +167,7 @@ const Gallery = ({ projects, user, showFromAll }) => {
                       <span>{project.likes.length}</span>
                       <button
                         onClick={(e) => handleLikeClick(e, project.id)}
-                        className={
-                          project.likes.includes(project.id)
-                            ? "like-button material-icons"
-                            : "like-button material-icons-outlined"
-                        }
+                        className='like-button material-icons-outlined'
                       >
                         thumb_up
                       </button>
