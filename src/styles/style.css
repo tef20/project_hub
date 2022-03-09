@@ -166,6 +166,22 @@ textarea {
   font-size: xxx-large;
 }
 
+.buttons-tray {
+  display: flex;
+  /* justify-content: flex-end; */
+  gap: 3px;
+}
+
+.buttons-tray button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.like-button {
+  margin-right: auto;
+}
+
 .aside {
   grid-column: -2 / -1;
   display: flex;

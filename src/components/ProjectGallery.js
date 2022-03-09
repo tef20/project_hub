@@ -132,44 +132,54 @@ const Gallery = ({ projects, user, showFromAll }) => {
         {selectedProjects.length ? (
           <ul className='gallery-items'>
             {selectedProjects.map((project) => {
-              const buttonTray =
-                user && user.uid === project.authorId ? (
-                  <>
-                    <span>{project.likes.length}</span>
-                    <button
-                      onClick={(e) => handleLikeClick(e, project.id)}
-                      className={
-                        project.likes.includes(project.id)
-                          ? "material-icons"
-                          : "material-icons-outlined"
-                      }
-                    >
-                      thumb_up
-                    </button>
-                    <button
-                      onClick={(e) => handleEditClick(e, project.id)}
-                      className='material-icons-outlined'
-                    >
-                      edit
-                    </button>
-                    <button
-                      onClick={(e) => handleDeleteItem(e, project.id)}
-                      className='material-icons-outlined'
-                    >
-                      delete
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <span>{project.likes.length}</span>
-                    <button
-                      onClick={(e) => handleLikeClick(e, project.id)}
-                      className='material-icons-outlined'
-                    >
-                      thumb_up
-                    </button>
-                  </>
-                );
+              const buttonTray = (
+                <div className='buttons-tray'>
+                  {user && user.uid === project.authorId ? (
+                    <>
+                      <div className='like-button'>
+                        <span>{project.likes.length}</span>
+                        <button
+                          onClick={(e) => handleLikeClick(e, project.id)}
+                          className={
+                            project.likes.includes(project.id)
+                              ? "material-icons"
+                              : "material-icons-outlined"
+                          }
+                        >
+                          thumb_up
+                        </button>
+                      </div>
+                      <button
+                        onClick={(e) => handleEditClick(e, project.id)}
+                        className='material-icons-outlined'
+                      >
+                        edit
+                      </button>
+                      <button
+                        onClick={(e) => handleDeleteItem(e, project.id)}
+                        className='material-icons-outlined'
+                      >
+                        delete
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <span>{project.likes.length}</span>
+                      <button
+                        onClick={(e) => handleLikeClick(e, project.id)}
+                        className={
+                          project.likes.includes(project.id)
+                            ? "like-button material-icons"
+                            : "like-button material-icons-outlined"
+                        }
+                      >
+                        thumb_up
+                      </button>
+                    </>
+                  )}
+                </div>
+              );
+
               return (
                 <li
                   key={project.id}
