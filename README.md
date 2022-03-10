@@ -2,7 +2,7 @@
 
 ---
 
-Dashboard with tiled links to projects, google sign-in, upload, remove, favourite project links.
+Dashboard with tiled links to projects, google sign-in, upload, remove, like project links.
 
 - React
   - Hooks
@@ -12,3 +12,5 @@ Dashboard with tiled links to projects, google sign-in, upload, remove, favourit
   - Firestore
   - Storage
   - Authentication
+
+Visit site [here](https://project-hub-1dc00.web.app/)!
