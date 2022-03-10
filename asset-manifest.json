@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/project_hub/static/css/main.038a32fb.css",
+    "main.js": "/project_hub/static/js/main.48a5bd38.js",
+    "static/media/blank_avatar.webp": "/project_hub/static/media/blank_avatar.d5b7ec600c286671a8d9.webp",
+    "index.html": "/project_hub/index.html",
+    "main.038a32fb.css.map": "/project_hub/static/css/main.038a32fb.css.map",
+    "main.48a5bd38.js.map": "/project_hub/static/js/main.48a5bd38.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.038a32fb.css",
+    "static/js/main.48a5bd38.js"
+  ]
+}
