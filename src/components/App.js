@@ -14,7 +14,6 @@ function App() {
     const unsubAthState = onAuthStateChanged(auth, (user) => {
       setUser(user);
     });
-    console.log("Updating user");
     return unsubAthState;
   }, []);
 

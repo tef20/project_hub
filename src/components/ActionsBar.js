@@ -17,7 +17,14 @@ const ActionsBar = ({
         setFilterString={setFilterString}
       />
       <SortSelector sortField={sortField} setSortField={setSortField} />
-      {user?.uid && <button onClick={firePopup}>Add project</button>}
+      {user?.uid && (
+        <button
+          onClick={firePopup}
+          className='new-project-button material-icons-outlined'
+        >
+          add
+        </button>
+      )}
     </section>
   );
 };

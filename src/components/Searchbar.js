@@ -8,8 +8,7 @@ const SearchBar = ({ filterString, setFilterString }) => {
   };
   return (
     <>
-      <label htmlFor='search-bar'>Find: </label>
-      <div>
+      <label htmlFor='search-bar' className='material-icons-outlined'>
         <input
           id='search-bar'
           type='text'
@@ -18,7 +17,8 @@ const SearchBar = ({ filterString, setFilterString }) => {
           value={filterString}
           onChange={handleSearchInput}
         />
-      </div>
+        search
+      </label>
     </>
   );
 };

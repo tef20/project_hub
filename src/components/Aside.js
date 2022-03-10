@@ -27,12 +27,16 @@ const Aside = ({ projects }) => {
   return (
     <aside className='aside'>
       <section className='most-liked'>
-        <span>Most liked items</span>
+        <h2 className='most-liked aside-list-header'>Most liked items</h2>
         <ul className='most-liked aside-list-item'>
           {sortedProjects &&
             sortedProjects.map((project, i) => {
               return (
-                <li key={project.id} className='most-liked list-item' onClick={() => navigate(`/project/${project.id}`)}>
+                <li
+                  key={project.id}
+                  className='most-liked list-item'
+                  onClick={() => navigate(`/project/${project.id}`)}
+                >
                   <span>{project.name}</span>
                   <span>{project.likes.length}</span>
                 </li>

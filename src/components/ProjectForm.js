@@ -17,7 +17,6 @@ export default function ProjectForm({
   const [formValues, setFormValues] = useState({});
 
   useEffect(() => {
-    console.log({ projIdUnderEdit });
     if (projIdUnderEdit)
       setFormValues(projects.find((proj) => proj.id === projIdUnderEdit));
   }, [projIdUnderEdit, projects]);
@@ -35,7 +34,6 @@ export default function ProjectForm({
     const formFields = Object.keys(formValues);
     if (formFields.length) {
       if (projIdUnderEdit) {
-        console.log(2, projIdUnderEdit);
         const docRef = doc(firestoreDB, "projects", projIdUnderEdit);
         await updateDoc(docRef, {
           ...formValues,
@@ -48,7 +46,7 @@ export default function ProjectForm({
           author: user.displayName,
           link: formValues.link,
           description: formValues.description,
-          favourited: 0,
+          likes: [],
           viewed: 0,
           authorId: user.uid,
           createdAt: serverTimestamp(),

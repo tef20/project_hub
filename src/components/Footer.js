@@ -1,11 +1,9 @@
-// todo: add link to github
 const Footer = () => {
   return (
     <footer>
-      footer here
-      
+      <a href='https://www.github.com/tef20'>github.com/tef20</a>
     </footer>
-  )
-}
+  );
+};
 
 export default Footer;

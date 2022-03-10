@@ -13,7 +13,6 @@ const ViewWindow = ({ user }) => {
   useEffect(() => {
     let mounted = true;
     const loadProjectsData = async () => {
-      console.log("Loading projects...");
       try {
         const colRef = collection(firestoreDB, "projects");
         // const userProjectsQuery = query(
@@ -31,7 +30,6 @@ const ViewWindow = ({ user }) => {
           });
           if (mounted) {
             setProjects(storedProjects);
-            console.log("Load successful.");
           }
         });
       } catch (err) {

@@ -21,7 +21,9 @@ const Gallery = ({ projects, user, showFromAll }) => {
   const [projIdUnderEdit, setProjIdUnderEdit] = useState();
 
   useEffect(() => {
-    setFilterExp(new RegExp(filterString, "i"));
+    setFilterExp(
+      new RegExp(filterString.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&"), "i")
+    );
   }, [filterString]);
 
   const matchUser = (project, user) => {
@@ -52,13 +54,13 @@ const Gallery = ({ projects, user, showFromAll }) => {
           sortField === "createdAt"
             ? projA[sortField].seconds
             : sortField === "likes"
-            ? -projA[sortField]
+            ? -projA[sortField].length
             : projA[sortField].toLowerCase();
         const projBVal =
           sortField === "createdAt"
             ? projB[sortField].seconds
             : sortField === "likes"
-            ? -projB[sortField]
+            ? -projB[sortField].length
             : projB[sortField].toLowerCase();
 
         if (projAVal < projBVal) return -1;
@@ -119,16 +121,15 @@ const Gallery = ({ projects, user, showFromAll }) => {
           />
         </div>
       )}
-      <ActionsBar
-        filterString={filterString}
-        setFilterString={setFilterString}
-        sortField={sortField}
-        setSortField={setSortField}
-        user={user}
-        firePopup={() => togglePopup(true)}
-      />
       <section className='gallery'>
-        <span>Gallery items</span>
+        <ActionsBar
+          filterString={filterString}
+          setFilterString={setFilterString}
+          sortField={sortField}
+          setSortField={setSortField}
+          user={user}
+          firePopup={() => togglePopup(true)}
+        />
         {selectedProjects.length ? (
           <ul className='gallery-items'>
             {selectedProjects.map((project) => {
